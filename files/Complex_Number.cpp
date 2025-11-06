@@ -1,46 +1,88 @@
 #include <iostream>
 #include <cmath>
-
+#include <string>
 class Complex_Number {
-	float rel;
-	float img;
-	
-	
-	public:
-		Complex_Number (float r = 0, float i = 0) : rel(r), img(i) {}
+    float rel;
+    float img;
 
-		Complex_Number operator+(Complex_Number rhs) {
-			return Complex_Number(rel +rhs.rel, img + rhs.img);
-		}
 
-		void print () {
-			std::cout << "Realteil: "<< rel<< " Imaginärteil: "<< img <<"\n";
-		}
+public:
+    Complex_Number (float r = 0, float i = 0) : rel(r), img(i) {}
 
-		double abs() {
-			
-			double Betrag = std::sqrt(std::pow(rel, 2) + std::pow(img, 2) );
-		
-			return Betrag; 
-		}
-		
-		void add() {
-			rel++;
-			img++;
-		}
+    Complex_Number operator+(Complex_Number rhs) {
+        return Complex_Number(rel +rhs.rel, img + rhs.img);
+
+    }
+   
+    bool operator<(Complex_Number rhs) {
+        if(abs() < rhs.abs()) {
+            return true;
+
+        }
+        else return false;
+
+    }
+   
+    bool operator>(Complex_Number rhs) {
+        if(abs() > rhs.abs()) {
+            return true;
+
+        }
+        else return false;
+
+    }
+    
+    bool operator=(Complex_Number rhs) {
+        if(abs() == rhs.abs()) {
+            return true;
+
+        }
+        else return false;
+
+    }
+
+    void print () {
+        std::cout << "Realteil: "<< rel<< " Imaginärteil: "<< img <<"\n";
+    }
+
+    double abs() {
+
+        double Betrag = std::sqrt(std::pow(rel, 2) + std::pow(img, 2) );
+
+        return Betrag;
+    }
+
+    void add() {
+        rel++;
+        img++;
+    }
 
 
 };
 
 int main () {
-	Complex_Number a(3,7);
-	Complex_Number b(7,3);
-	Complex_Number c= a+b;
-	
-	c.print();
-	std::cout << "\n" <<"Betrag:" <<  c.abs() << "\n\n"	;
-	
-	c.add();
-	c.print();
-	return 0;
+    Complex_Number a(3,7);
+    Complex_Number b(7,3);
+    Complex_Number d(6,2);
+    Complex_Number c = a+b;
+
+    c.print();
+    std::cout << "\n" <<"Betrag:" <<  c.abs() << "\n\n"	;
+
+    c.add();
+    c.print();
+    a.print();
+    b.print();
+    d.print();
+    bool z = a<b;
+    std::cout << "Ist a kleiner b?" << z << "\n";
+
+    z = d<a;
+    std::cout << "Ist d kleiner a?" << z << "\n";
+
+
+
+    return 0;
+
+
 }
